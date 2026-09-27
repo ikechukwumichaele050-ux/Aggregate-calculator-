@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aggregate Score Calculator — Nigerian Universities</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#132242; --navy-2:#1D3059; --gold:#C89B3C; --paper:#F5F3EC;
+    --card:#FFFFFF; --ink:#181A1F; --muted:#5F6470; --line:#E3E0D6; --good:#1F6B47; --good-bg:#E9F5EE;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --paper:#0F1116; --card:#191C24; --ink:#EEECE4; --muted:#9CA0AC; --line:#2B2F3A; --good-bg:#12291D; }
+  }
+  :root[data-theme="dark"]{ --paper:#0F1116; --card:#191C24; --ink:#EEECE4; --muted:#9CA0AC; --line:#2B2F3A; --good-bg:#12291D; }
+  html{scroll-padding-top:env(safe-area-inset-top,0px); height:100%;}
+  body{height:100%; margin:0; background:var(--navy); color:#fff; font-family:'Inter',system-ui,sans-serif; line-height:1.55;}
+
+  .hero{max-width:520px; margin:0 auto; padding:48px 22px 40px; text-align:center;}
+  .mark{width:44px; height:44px; margin-bottom:18px;}
+  .kicker{font-size:0.8rem; color:var(--gold); letter-spacing:0.02em; margin:0 0 10px;}
+  h1{font-family:'Lora',serif; font-weight:700; font-size:1.9rem; line-height:1.25; margin:0 0 14px;}
+  .lede{color:#C9CCD6; font-size:1rem; max-width:38ch; margin:0 auto;}
+
+  .panel{background:var(--paper); color:var(--ink); border-radius:18px 18px 0 0; max-width:520px; margin:0 auto; padding:32px 24px 40px;}
+  .features{list-style:none; margin:0 0 30px; padding:0;}
+  .features li{display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); font-size:0.93rem;}
+  .features li:last-child{border-bottom:none;}
+  .features svg{flex:none; margin-top:2px;}
+  .features b{display:block; font-size:0.94rem;}
+  .features span{color:var(--muted); font-size:0.85rem;}
+
+  .paycard{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:26px; text-align:center;}
+  .price{font-family:'Lora',serif; font-size:2.4rem; font-weight:700; color:var(--navy); margin:2px 0 2px;}
+  @media (prefers-color-scheme: dark){ .price{color:#EEECE4;} }
+  :root[data-theme="dark"] .price{color:#EEECE4;}
+  .price-sub{color:var(--muted); font-size:0.85rem; margin-bottom:20px;}
+  button#payBtn{
+    width:100%; padding:15px; background:var(--gold); color:#20180a; border:none;
+    border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; font-family:inherit;
+  }
+  button#payBtn:disabled{opacity:0.7;}
+  .err{color:#C0442B; font-size:0.83rem; margin-top:12px; display:none;}
+  .success{display:none;}
+  .success h2{font-family:'Lora',serif; font-size:1.2rem; margin:0 0 8px; color:var(--good);}
+  .success p{color:var(--muted); font-size:0.9rem; margin:0 0 18px;}
+  a.enter{
+    display:block; width:100%; padding:15px; background:var(--navy); color:#fff; text-align:center;
+    border-radius:8px; font-weight:600; text-decoration:none; font-family:inherit;
+  }
+  .trust{font-size:0.78rem; color:var(--muted); text-align:center; margin-top:16px;}
+  footer{color:var(--muted); font-size:0.76rem; text-align:center; margin-top:26px;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <svg class="mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="20,4 37,13 20,22 3,13" fill="#C89B3C"/>
+      <polygon points="20,22 34,15 34,26 20,33 6,26 6,15" fill="none" stroke="#fff" stroke-width="2"/>
+      <line x1="37" y1="13" x2="37" y2="24" stroke="#fff" stroke-width="2"/>
+    </svg>
+    <p class="kicker">FOR 2026/2027 JAMB &amp; POST-UTME CANDIDATES</p>
+    <h1>Know your aggregate before admission lists drop</h1>
+    <p class="lede">One tool for every Nigerian university — your exact formula, your course's O'Level requirement, and whether you clear your department's cut-off.</p>
+  </div>
+
+  <div class="panel">
+    <ul class="features">
+      <li>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C89B3C" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div><b>Search any university</b><span>Verified formulas for major schools, general estimate for the rest — nothing is left out.</span></div>
+      </li>
+      <li>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C89B3C" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div><b>Pick your course</b><span>See the O'Level subjects typically required before you even sit for Post-UTME.</span></div>
+      </li>
+      <li>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C89B3C" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div><b>Compare to your cut-off</b><span>Paste in your department's published cut-off and get an instant pass/below verdict.</span></div>
+      </li>
+    </ul>
+
+    <div class="paycard" id="paycard">
+      <div class="price" id="priceLabel">₦1,000</div>
+      <div class="price-sub">One-time payment · lifetime access on this device</div>
+      <button id="payBtn">Pay with OPay to enter</button>
+      <p class="err" id="payErr">Something went wrong starting the payment. Please try again.</p>
+      <p class="trust">Secure checkout handled by OPay. No account needed.</p>
+    </div>
+
+    <div class="paycard success" id="successCard">
+      <h2>Payment confirmed</h2>
+      <p>You now have full access on this device.</p>
+      <a class="enter" href="aggregate-calculator.html">Enter the calculator →</a>
+    </div>
+
+    <footer>Formulas reflect published admission guides where verified and common national patterns elsewhere. Always confirm current cut-offs on your university's official portal.</footer>
+  </div>
+
+<script>
+/* Update API_BASE to wherever /opay-backend is deployed on your real domain.
+   This page and aggregate-calculator.html must be served from the same domain
+   so the unlock (stored in localStorage) carries over between them. */
+const PAY_CONFIG = { API_BASE: "https://your-backend-domain.com", PRICE_NGN: 1000 };
+document.getElementById('priceLabel').textContent = '₦' + PAY_CONFIG.PRICE_NGN.toLocaleString();
+
+function showUnlocked(){
+  localStorage.setItem('agg_unlocked', 'true');
+  document.getElementById('paycard').style.display = 'none';
+  document.getElementById('successCard').style.display = 'block';
+}
+
+(async function init(){
+  if(localStorage.getItem('agg_unlocked') === 'true'){ showUnlocked(); return; }
+  const params = new URLSearchParams(window.location.search);
+  const ref = params.get('ref') || localStorage.getItem('agg_ref');
+  if(ref){
+    try{
+      const r = await fetch(`${PAY_CONFIG.API_BASE}/api/status/${ref}`);
+      const data = await r.json();
+      if(data.paid){ showUnlocked(); }
+    }catch(e){ /* backend not reachable yet */ }
+  }
+})();
+
+document.getElementById('payBtn').addEventListener('click', async ()=>{
+  const btn = document.getElementById('payBtn');
+  const err = document.getElementById('payErr');
+  err.style.display='none';
+  btn.textContent = 'Starting payment…';
+  btn.disabled = true;
+  try{
+    const res = await fetch(`${PAY_CONFIG.API_BASE}/api/create-payment`, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({amount:PAY_CONFIG.PRICE_NGN})});
+    const data = await res.json();
+    if(data.checkoutUrl){
+      localStorage.setItem('agg_ref', data.reference);
+      window.location.href = data.checkoutUrl;
+    } else { throw new Error('no checkout url'); }
+  }catch(e){
+    err.style.display='block';
+    btn.textContent = 'Pay with OPay to enter';
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
